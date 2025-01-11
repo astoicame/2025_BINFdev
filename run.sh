@@ -17,8 +17,6 @@ fi
 if [[ ! -d $outDir ]]; then mkdir -p $outDir; fi
 
 
-return 
-
 # run the workflow
 nextflow run main.nf \
 	-profile $profile \
