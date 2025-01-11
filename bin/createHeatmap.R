@@ -74,9 +74,49 @@ annoColors <- list(
 ################################################
 ################################################
 
+# Set output filename from projectID
+output_file <- paste0("basic_heatmap_", outprefix, ".pdf")
+
+# Generate simple heatmap
+pdf(output_file, width=10, height=8)
+pheatmap(
+  sampleData,                      
+  cluster_rows = TRUE,             
+  cluster_cols = TRUE,            
+  clustering_distance_rows = "euclidean",  
+  clustering_distance_cols = "euclidean",  
+  clustering_method = "ward.D",
+  main = "Basic Heatmap"
+)
+dev.off()
+
 
 ################################################
 ################################################
-## Create a basic heatmap##
+## Create a complex heatmap##
 ################################################
 ################################################
+
+# Set output filename from projectID
+output_file <- paste0("complex_heatmap_", outprefix, ".pdf")
+
+# Generate complex heatmap
+pdf(output_file, width=10, height=8)
+breaks <- c(max(sampleData), 0, min(sampleData))
+pheatmap(
+  sampleData,                      
+  cluster_rows = TRUE,             
+  cluster_cols = TRUE,            
+  clustering_distance_rows = "euclidean",  
+  clustering_distance_cols = "euclidean",  
+  clustering_method = "ward.D",
+  annotation_col = annoData,
+  annotation_row = geneFunctions,
+  annotation_names_row = FALSE,
+  annotation_names_col = FALSE,
+  annotation_colors = annoColors,
+  legend_breaks = breaks,
+  legend_labels = c("High", "Medium", "Low"),
+  main = "Complex Heatmap"
+)
+dev.off()
